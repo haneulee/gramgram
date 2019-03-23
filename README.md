@@ -1,3 +1,3 @@
-# gramgram
+# Gramgram
 
-Cloning Instagram with Python Django, React, React-native.
+Cloning Instagram with phthon Django and React, React Native.
