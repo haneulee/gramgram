@@ -14,6 +14,7 @@ urlpatterns = [
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
     path("users/", include("gramgram.users.urls", namespace="users")),
+    path("images/", include("gramgram.images.urls", namespace="images"),),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
