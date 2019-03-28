@@ -3,16 +3,45 @@ from rest_framework.response import Response
 from . import models, serializers
 
 
-class ListAllImages(APIView):
+# class ListAllImages(APIView):
+
+    # def get(self, request, format=None):
+
+    #     all_images = models.Image.objects.all()
+
+    #     serializer = serializers.ImageSerializer(all_images, many=True)
+
+    #     return Response(data=serializer.data)
+
+
+class Feed(APIView):
 
     def get(self, request, format=None):
 
-        all_images = models.Image.objects.all()
+        user = request.user
 
-        serializer = serializers.ImageSerializer(all_images, many=True)
+        following_users = user.following.all()
 
-        return Response(data=serializer.data)
+        image_list = []
 
+        for following_user in following_users:
+
+            print(following_users.images.all()[:2])
+
+            user_images = following_users.images.all()[:2]
+
+            for image in user_images:
+
+                image_list.append(image)
+
+        sorted_list = sorted(image_list, key=lambda image: image.create_at, reverse=True)
+
+        serializer = serializers.ImageSerializer(sorted_list, many=True)
+
+        return Response(serializer.data)
+
+    # def get_key(image):
+    #     return image.create_at
 
 class ListAllComments(APIView):
 
@@ -34,3 +63,4 @@ class ListAllLikes(APIView):
         serializer = serializers.LikeSerializer(all_likes, many=True)
 
         return Response(data=serializer.data)
+
