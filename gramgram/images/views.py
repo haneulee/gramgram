@@ -1,6 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from . import models, serializers
+from django.shortcuts import get_object_or_404
 
 
 # class ListAllImages(APIView):
@@ -43,24 +44,32 @@ class Feed(APIView):
     # def get_key(image):
     #     return image.create_at
 
-class ListAllComments(APIView):
+# class ListAllComments(APIView):
 
-    def get(self, request, format=None):
+#     def get(self, request, format=None):
 
-        all_comments = models.Comment.objects.all()
+#         all_comments = models.Comment.objects.all()
 
-        serializer = serializers.CommentSerializer(all_comments, many=True)
+#         serializer = serializers.CommentSerializer(all_comments, many=True)
 
-        return Response(data=serializer.data)
+#         return Response(data=serializer.data)
 
 
-class ListAllLikes(APIView):
+# class ListAllLikes(APIView):
 
-    def get(self, request, format=None):
+#     def get(self, request, format=None):
 
-        all_likes = models.Like.objects.all()
+#         all_likes = models.Like.objects.all()
 
-        serializer = serializers.LikeSerializer(all_likes, many=True)
+#         serializer = serializers.LikeSerializer(all_likes, many=True)
 
-        return Response(data=serializer.data)
+#         return Response(data=serializer.data)
+
+class LikeImage(APIView):
+	
+	    def get(self, request, image_id, format=None):
+	
+	        print(image_id)
+	
+	        return Response(status=200)
 
