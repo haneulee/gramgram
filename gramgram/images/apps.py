@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class ImagesConfig(AppConfig):
+class ImagesAppConfig(AppConfig):
     name = 'gramgram.images'

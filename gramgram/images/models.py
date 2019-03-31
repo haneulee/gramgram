@@ -1,6 +1,7 @@
 from django.db import models
-from gramgram.users import models as user_models
 from django.utils.encoding import python_2_unicode_compatible
+from gramgram.users import models as user_models
+
 
 @python_2_unicode_compatible
 class TimeStampedModel(models.Model):
@@ -11,47 +12,49 @@ class TimeStampedModel(models.Model):
     class Meta:
         abstract = True
 
+
 @python_2_unicode_compatible
 class Image(TimeStampedModel):
-
     """ Image Model """
-
     file = models.ImageField()
     location = models.CharField(max_length=140)
     caption = models.TextField()
     creator = models.ForeignKey(
-        user_models.User, null=True, related_name='images', on_delete=models.CASCADE)
-
-    @property
-    def like_count(self):
-        return self.likes.all().count()
+        user_models.User,
+        null=True,
+        related_name="images",
+        on_delete=models.CASCADE)
 
     def __str__(self):
         return '{} - {}'.format(self.location, self.caption)
 
     class Meta:
-        ordering = ['-created_at']
+        ordering = ["-created_at"]
 
 
 @python_2_unicode_compatible
 class Comment(TimeStampedModel):
-
     """ Comment Model """
 
     message = models.TextField()
-    creator = models.ForeignKey(user_models.User, null=True, on_delete=models.CASCADE)
-    image = models.ForeignKey(Image, null=True, on_delete=models.CASCADE, related_name="comments")
-    
+    creator = models.ForeignKey(
+        user_models.User, null=True, on_delete=models.CASCADE)
+    image = models.ForeignKey(
+        Image, null=True, related_name='comments', on_delete=models.CASCADE)
+
     def __str__(self):
         return self.message
 
 
 @python_2_unicode_compatible
 class Like(TimeStampedModel):
-
     """ Like Model """
-    creator = models.ForeignKey(user_models.User, null=True, on_delete=models.CASCADE)
-    image = models.ForeignKey(Image, null=True, on_delete=models.CASCADE, related_name="likes")
+
+    creator = models.ForeignKey(
+        user_models.User, null=True, on_delete=models.CASCADE)
+    image = models.ForeignKey(
+        Image, null=True, related_name='likes', on_delete=models.CASCADE)
 
     def __str__(self):
-        return 'User: {} - Image Caption: {}'.format(self.creator.username, self.image.caption)
+        return 'User: {} - Image Caption: {}'.format(self.creator.username,
+                                                     self.image.caption)

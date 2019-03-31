@@ -1,23 +1,20 @@
 from django.contrib import admin
 from . import models
 
+# Register your models here.
+
 
 @admin.register(models.Image)
 class ImageAdmin(admin.ModelAdmin):
 
-    list_display_links = (
-        'location',
-    )
+    list_display_links = ('location', )
 
     search_fields = (
         'location',
         'caption',
     )
 
-    list_filter = (
-        'location',
-        'creator'
-    )
+    list_filter = ('location', 'creator')
 
     list_display = (
         'file',
