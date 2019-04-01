@@ -15,6 +15,7 @@ urlpatterns = [
         "<int:id>/comment/",
         view=views.CommentOnImage.as_view(),
         name="comment_image"),
+    path("comments/<int:id>/", view=views.Comment.as_view(), name="comment"),
 ]
 
 # /images/3/like/
