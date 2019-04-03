@@ -12,4 +12,5 @@ urlpatterns = [
         "<int:id>/unfollow/",
         view=views.UnFollowUser.as_view(),
         name="unfollow_user"),
+    path("<username>/", view=views.UserProfile.as_view(), name="user_profile"),
 ]
