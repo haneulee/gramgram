@@ -68,7 +68,7 @@ class ListAllLikes(APIView):
 
 
 class LikeImage(APIView):
-    def get(self, request, id, format=None):
+    def post(self, request, id, format=None):
 
         user = request.user
 
@@ -80,9 +80,8 @@ class LikeImage(APIView):
         try:
             preexisting_like = models.Like.objects.get(
                 creator=user, image=found_image)
-            preexisting_like.delete()
 
-            return Response(status=status.HTTP_204_NO_CONTENT)
+            return Response(status=status.HTTP_304_NO_MODIFIED)
         except models.Like.DoesNotExist:
 
             new_like = models.Like.objects.create(
@@ -91,6 +90,26 @@ class LikeImage(APIView):
             new_like.save()
 
             return Response(status=status.HTTP_201_CREATED)
+
+
+class UnLikeImage(APIView):
+    def delete(self, request, id, format=None):
+        user = request.user
+
+        try:
+            found_image = models.Image.objects.get(id=id)
+        except models.Image.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        try:
+            preexisting_like = models.Like.objects.get(
+                creator=user, image=found_image)
+
+            preexisting_like.delete()
+
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except models.Like.DoesNotExist:
+            return Response(status=status.HTTP_304_NO_MODIFIED)
 
 
 class CommentOnImage(APIView):

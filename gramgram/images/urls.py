@@ -12,6 +12,10 @@ urlpatterns = [
     path("likes/", view=views.ListAllImages.as_view(), name="all_likes"),
     path("<int:id>/like/", view=views.LikeImage.as_view(), name="like_image"),
     path(
+        "<int:id>/unlike/",
+        view=views.LikeImage.as_view(),
+        name="unlike_image"),
+    path(
         "<int:id>/comment/",
         view=views.CommentOnImage.as_view(),
         name="comment_image"),
