@@ -3,7 +3,7 @@ from . import models
 from gramgram.users import models as user_models
 
 
-class UserProfileImageSerializer(serializers.ModelSerializer):
+class CountImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Image
         fields = ("id", "file", "comment_count", "like_count")

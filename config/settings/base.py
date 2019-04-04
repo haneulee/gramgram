@@ -68,7 +68,8 @@ THIRD_PARTY_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
-    "rest_framework",
+    "rest_framework",  # REST framework
+    "taggit"  # hastag
 ]
 LOCAL_APPS = [
     "gramgram.users.apps.UsersAppConfig",
@@ -245,3 +246,5 @@ SOCIALACCOUNT_ADAPTER = "gramgram.users.adapters.SocialAccountAdapter"
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+
+TAGGIT_CASE_INSENSITIVE = True

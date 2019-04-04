@@ -10,10 +10,10 @@ Cloning Instagram with phthon Django and React, React Native.
 - [x] delete a comment that i created [delete]
 - [x] find people to follow on explore
 - [x] follow user/ unfollow user
-- [ ] see profile with images
-- [ ] get list of followers
-- [ ] get list of following
-- [ ] search images by hastag
+- [x] see profile with images
+- [x] get list of followers
+- [x] get list of following
+- [x] search images by hashtag
 - [ ] search users
 - [ ] see notifications
 - [ ] create notification(for follow, comment and like)
