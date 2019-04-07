@@ -18,6 +18,8 @@ urlpatterns = [
     # User management
     path("users/", include("gramgram.users.urls", namespace="users")),
     path("images/", include("gramgram.images.urls", namespace="images")),
+    path("notifications/",
+         include("gramgram.notifications.urls", namespace="notifications")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
 ] + static(
