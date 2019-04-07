@@ -74,6 +74,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "gramgram.users.apps.UsersAppConfig",
     "gramgram.images.apps.ImagesAppConfig",
+    "gramgram.notifications.apps.NotificationsAppConfig",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
