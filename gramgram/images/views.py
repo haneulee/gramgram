@@ -89,6 +89,9 @@ class LikeImage(APIView):
 
             new_like.save()
 
+            notification_views.create_notification(user, found_image.creator,
+                                                   'like', found_image)
+
             return Response(status=status.HTTP_201_CREATED)
 
 
@@ -128,6 +131,10 @@ class CommentOnImage(APIView):
         if serializer.is_valid():
 
             serializer.save(creator=user, image=found_image)
+
+            notification_views.create_notification(user, found_image.creator,
+                                                   'comment', found_image,
+                                                   serializer.data['message'])
 
             return Response(
                 data=serializer.data, status=status.HTTP_201_CREATED)
