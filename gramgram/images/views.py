@@ -236,3 +236,25 @@ class ImageDetail(APIView):
         serializer = serializers.ImageSerializer(found_image)
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+    def put(self, request, id, format=None):
+
+        user = request.user
+
+        try:
+            found_image = models.Image.objects.get(id=id, creator=user)
+        except models.Image.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        serializer = serializers.InputImageSerializer(
+            found_image, data=request.data, partial=True)
+
+        if serializer.is_valid():
+            serializer.save(creator=user)
+
+            return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+        else:
+
+            return Response(
+                data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)

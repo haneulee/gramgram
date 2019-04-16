@@ -47,3 +47,12 @@ class ImageSerializer(serializers.ModelSerializer):
         model = models.Image
         fields = ('id', 'file', 'location', 'caption', 'comments',
                   'like_count', "creator", "created_at")
+
+
+class InputImageSerializer(serializers.ModelSerializer):
+
+    # file = serializers.FileField(required=False)
+
+    class Meta:
+        model = models.Image
+        fields = ('file', 'caption', 'location')

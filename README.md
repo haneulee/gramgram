@@ -20,7 +20,7 @@ Cloning Instagram with phthon Django and React, React Native.
 - [x] delete a comment from my photos
 - [x] get single photo
 - [x] list photo likes
-- [ ] edit a photo
+- [x] edit a photo
 - [ ] delete a photo
 - [ ] update profile
 - [ ] upload a photo
