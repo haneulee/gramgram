@@ -19,13 +19,13 @@ Cloning Instagram with phthon Django and React, React Native.
 - [x] create notification(for follow, comment and like)
 - [x] delete a comment from my photos
 - [x] get single photo
-- [ ] update profile
-- [ ] list photo likes
+- [x] list photo likes
 - [ ] edit a photo
 - [ ] delete a photo
+- [ ] update profile
 - [ ] upload a photo
-- [ ] change password
-- [ ] sign up
-- [ ] log in
 - [ ] log in with facebook
-- [ ] JWT token
+- [ ] log in
+- [ ] sign up
+- [ ] change password
+- [ ] JWT token authentication

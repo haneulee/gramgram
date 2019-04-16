@@ -3,6 +3,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from . import models, serializers
 from gramgram.notifications import views as notification_views
+from gramgram.users import models as user_models
+from gramgram.users import serializers as user_serializers
 
 
 class Feed(APIView):
@@ -75,6 +77,18 @@ class ListAllLikes(APIView):
 
 
 class LikeImage(APIView):
+    def get(self, request, id, format=None):
+
+        likes = models.Like.objects.filter(image__id=id)
+
+        like_created_id = likes.values('creator_id')
+
+        users = user_models.User.objects.filter(id__in=like_created_id)
+
+        serializer = user_serializers.ListUserSerializer(users, many=True)
+
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+
     def post(self, request, id, format=None):
 
         user = request.user
