@@ -26,6 +26,12 @@ class Feed(APIView):
 
                 image_list.append(image)
 
+        my_images = user.images.all()[:2]
+
+        for image in my_images:
+
+            image_list.append(image)
+
         sorted_list = sorted(
             image_list, key=lambda image: image.created_at, reverse=True)
 
@@ -201,3 +207,18 @@ class ModerateComments(APIView):
             return Response(status=status.HTTP_404_NOT_FOUND)
 
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class ImageDetail(APIView):
+    def get(self, request, id, format=None):
+
+        user = request.user
+
+        try:
+            found_image = models.Image.objects.get(id=id)
+        except models.Image.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        serializer = serializers.ImageSerializer(found_image)
+
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
