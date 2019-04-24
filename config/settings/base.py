@@ -69,7 +69,8 @@ THIRD_PARTY_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "rest_framework",  # REST framework
-    "taggit"  # hastag
+    "taggit",  # hastag,
+    "taggit_serializer",
 ]
 LOCAL_APPS = [
     "gramgram.users.apps.UsersAppConfig",
@@ -251,12 +252,13 @@ SOCIALACCOUNT_ADAPTER = "gramgram.users.adapters.SocialAccountAdapter"
 TAGGIT_CASE_INSENSITIVE = True
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
+    'DEFAULT_PERMISSION_CLASSES':
+    ('rest_framework.permissions.IsAuthenticated', ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ),
 }
+
+REST_USE_JWT = True
