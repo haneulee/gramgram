@@ -38,6 +38,7 @@ pylint-django = "==2.0.6"
 django-taggit = "*"
 djangorestframework-jwt = "*"
 django-taggit-serializer = "*"
+django-rest-auth = {extras = ["with_social"],version = "*"}
 
 [requires]
 python_version = "3.7"
