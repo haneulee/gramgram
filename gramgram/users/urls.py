@@ -26,4 +26,6 @@ urlpatterns = [
         name="change_password"),
     path("search/", view=views.Search.as_view(), name="search_users"),
     path("<username>/", view=views.UserProfile.as_view(), name="user_profile"),
+    path(
+        "login/facebook/", view=views.FacebookLogin.as_view(), name='fb_login')
 ]

@@ -27,5 +27,5 @@ Cloning Instagram with phthon Django and React, React Native.
 - [x] JWT token authentication
 - [x] log in
 - [x] sign up
-- [ ] upload a photo
-- [ ] log in with facebook
+- [x] upload a photo
+- [x] log in with facebook
