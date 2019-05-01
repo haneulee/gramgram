@@ -39,6 +39,7 @@ django-taggit = "*"
 djangorestframework-jwt = "*"
 django-taggit-serializer = "*"
 django-rest-auth = {extras = ["with_social"],version = "*"}
+django-cors-headers = "*"
 
 [requires]
 python_version = "3.7"
