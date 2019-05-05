@@ -4,6 +4,7 @@ import { createBrowserHistory } from "history";
 import thunk from "redux-thunk";
 import users from "redux/modules/users";
 import { composeWithDevTools } from "redux-devtools-extension";
+import { i18nState } from "redux-i18n";
 
 const env = process.env.NODE_ENV;
 
@@ -18,7 +19,8 @@ if (env === "development") {
 
 const reducer = combineReducers({
   users,
-  router: connectRouter(history)
+  router: connectRouter(history),
+  i18nState
 });
 
 // let store = initialState =>
@@ -32,7 +34,8 @@ function configureStore(preloadedState) {
     preloadedState,
     composeWithDevTools(
       applyMiddleware(
-        routerMiddleware(history) // for dispatching history actions
+        routerMiddleware(history), // for dispatching history actions
+        ...middlewares
         // ... other middlewares ...
       )
     )
