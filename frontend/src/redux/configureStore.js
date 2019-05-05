@@ -1,12 +1,13 @@
-import { combineReducers, createStore, applyMiddleware } from "redux";
-import { routerReducer, routerMiddleware } from "react-router-redux";
-import createHistory from "history/createBrowserHistory";
+import { combineReducers, createStore, applyMiddleware, compose } from "redux";
+import { connectRouter, routerMiddleware } from "connected-react-router";
+import { createBrowserHistory } from "history";
 import thunk from "redux-thunk";
 import users from "redux/modules/users";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 const env = process.env.NODE_ENV;
 
-const history = createHistory();
+const history = createBrowserHistory();
 
 const middlewares = [thunk, routerMiddleware(history)];
 
@@ -17,12 +18,27 @@ if (env === "development") {
 
 const reducer = combineReducers({
   users,
-  routing: routerReducer
+  router: connectRouter(history)
 });
 
-let store = initialState =>
-  createStore(reducer, applyMiddleware(...middlewares));
+// let store = initialState =>
+//   createStore(reducer, applyMiddleware(...middlewares));
 
 export { history };
 
-export default store();
+function configureStore(preloadedState) {
+  const store = createStore(
+    reducer, //createRootReducer(history), // root reducer with router state
+    preloadedState,
+    composeWithDevTools(
+      applyMiddleware(
+        routerMiddleware(history) // for dispatching history actions
+        // ... other middlewares ...
+      )
+    )
+  );
+
+  return store;
+}
+
+export default configureStore();
