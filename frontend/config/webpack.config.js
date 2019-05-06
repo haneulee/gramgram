@@ -405,7 +405,8 @@ module.exports = function(webpackEnv) {
               exclude: cssModuleRegex,
               use: getStyleLoaders({
                 importLoaders: 1,
-                sourceMap: isEnvProduction && shouldUseSourceMap
+                sourceMap: isEnvProduction && shouldUseSourceMap,
+                calmelCase: "dashes"
               }),
               // Don't consider CSS imports dead code even if the
               // containing package claims to have no side effects.
@@ -439,7 +440,9 @@ module.exports = function(webpackEnv) {
                   loader: require.resolve("sass-loader"),
                   options: {
                     data: `@import "${paths.appSrc}/config/variables";`,
-                    sourceMap: isEnvProduction && shouldUseSourceMap
+                    sourceMap: isEnvProduction && shouldUseSourceMap,
+                    calmelCase: "dashes",
+                    modules: true
                   }
                 }
               ),
@@ -464,7 +467,9 @@ module.exports = function(webpackEnv) {
                   loader: require.resolve("sass-loader"),
                   options: {
                     data: `@import "${paths.appSrc}/config/variables";`,
-                    sourceMap: isEnvProduction && shouldUseSourceMap
+                    sourceMap: isEnvProduction && shouldUseSourceMap,
+                    calmelCase: "dashes",
+                    modules: true
                   }
                 }
               )
