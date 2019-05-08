@@ -1,5 +1,5 @@
 import React from "react";
-import "./styles.scss";
+import "./styles.module.scss";
 import PropTypes from "prop-types";
 import { Route, Switch } from "react-router-dom";
 import Auth from "components/Auth";

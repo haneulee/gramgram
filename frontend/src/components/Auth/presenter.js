@@ -1,24 +1,27 @@
 import React from "react";
-import styles from "./styles.scss";
+import styles from "./styles.module.scss";
 
 const Auth = (props, context) => (
-  <main className="auth">
-    <div className="column">
+  <main className={styles.auth}>
+    <div className={styles.column}>
       <img
-        className="phoneImg"
+        className={styles.phoneImg}
         src={require("images/phone.png")}
         alt="Checkout our app. Is cool"
       />
     </div>
-    <div className="column">
-      <div className="whiteBox">
+    <div className={styles.column}>
+      <div className={styles.whiteBox}>
         {(() => {
           switch (props.action) {
             case "login":
               return (
                 <p>
                   Don't have an account?{" "}
-                  <span className="changeLink" onClick={props.changeAction}>
+                  <span
+                    className={styles.changeLink}
+                    onClick={props.changeAction}
+                  >
                     Sign up
                   </span>
                 </p>
@@ -27,7 +30,10 @@ const Auth = (props, context) => (
               return (
                 <p>
                   Have an account?{" "}
-                  <span className="changeLink" onClick={props.changeAction}>
+                  <span
+                    className={styles.changeLink}
+                    onClick={props.changeAction}
+                  >
                     Log in
                   </span>
                 </p>
@@ -37,16 +43,14 @@ const Auth = (props, context) => (
           }
         })()}
       </div>
-      <div className="appBox">
+      <div className={styles.appBox}>
         <span>Get the app</span>
-        <div className="appstores">
+        <div className={styles.appstores}>
           <img
-            className="downloadImg"
             src={require("images/ios.png")}
             alt="Download it on the Apple Appstore"
           />
           <img
-            className="downloadImg"
             src={require("images/android.png")}
             alt="Download it on the Apple Appstore"
           />
