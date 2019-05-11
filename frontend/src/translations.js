@@ -1,18 +1,27 @@
 export const translations = {
-  es: {
-    "Login in": "Iniciar Ses"
+  'kr': {
+    'Have an account?': '계정이 있습니까?',
+    'Log in': '로그인',
+    'Don\'t have an account?': '계정이 없습니까?',
+    'Sign up': '가입하기',
+    'Get the app': '앱 다운로드',
+    'Username': '이름',
+    'Log in with Facebook': '페이스북 로그인',
+    'Forgot password?': '비밀번호를 잊어버렸습니까?',
+    'Sign up to see photos and videos from your friends.': '',
+    'By signing up, you agree to our': '',
+    'Terms & Privacy Policy': '',
+    'About Us': '소개',
+    'Support': '',
+    'Blog': '',
+    'Press': '',
+    'API': '',
+    'Jobs': '',
+    'Privacy': '',
+    'Terms': '',
+    'Directory': '',
+    'Language': '',
   },
-  kr: {
-    "Login in": "로그인",
-    "About Us": "소개",
-    Support: "지원",
-    Blog: "블로그",
-    Press: "기사",
-    API: "API",
-    Jobs: "채용",
-    Privacy: "개인",
-    Terms: "약관",
-    Directory: "연락",
-    Language: "언어"
-  }
-};
+  'options': {
+  },
+}

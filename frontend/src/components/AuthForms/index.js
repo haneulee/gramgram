@@ -1,11 +1,20 @@
 import React from "react";
+import PropTypes from "prop-types";
 import LogoFacebook from "react-ionicons/lib/LogoFacebook";
 import styles from "./styles.module.scss";
 
-export const LoginForm = props => (
+LoginForm.contextTypes = {
+  t: PropTypes.func.isRequired
+};
+
+export const LoginForm = (props, context) => (
   <div className={styles.formComponent}>
     <form className={styles.form}>
-      <input type="text" placeholder="Username" className={styles.textInput} />
+      <input
+        type="text"
+        placeholder={context.t("Username")}
+        className={styles.textInput}
+      />
       <input
         type="password"
         placeholder="Password"
@@ -15,19 +24,21 @@ export const LoginForm = props => (
     </form>
     <span className={styles.divider}>or</span>
     <span className={styles.facebookLink}>
-      <LogoFacebook fontSize="20px" color="#385185" /> Log in with Facebook
+      <LogoFacebook fontSize="20px" color="#385185" />{" "}
+      {context.t("Log in with Facebook")}
     </span>
-    <span className={styles.forgotLink}>Forgot password?</span>
+    <span className={styles.forgotLink}>{context.t("Forgot password?")}</span>
   </div>
 );
 
 export const SignupForm = props => (
   <div className={styles.formComponent}>
     <h3 className={styles.signupHeader}>
-      Sign up to see photos and videos from your friends.
+      {context.t("Sign up to see photos and videos from your friends.")}
     </h3>
     <button className={styles.button}>
-      <LogoFacebook fontSize="20px" color="white" /> Log in with Facebook
+      <LogoFacebook fontSize="20px" color="white" />
+      {context.t("Log in with Facebook")}
     </button>
     <span className={styles.divider}>or</span>
     <form className={styles.form}>
@@ -46,7 +57,8 @@ export const SignupForm = props => (
       <input type="submit" value="Sign up" className={styles.button} />
     </form>
     <p className={styles.terms}>
-      By signing up, you agree to our <span>Terms & Privacy Policy</span>.
+      {context.t("By signing up, you agree to our")}{" "}
+      <span>{context.t("Terms & Privacy Policy")}</span>
     </p>
   </div>
 );
