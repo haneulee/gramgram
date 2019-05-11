@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import FacebookLogin from "react-facebook-login";
-import LogoFacebook from "react-ionicons/lib/LogoFacebook";
+// import LogoFacebook from "react-ionicons/lib/LogoFacebook";
 import formStyles from "shared/formStyles.module.scss";
 
 export const SignupForm = (props, context) => (
