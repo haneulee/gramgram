@@ -6,12 +6,12 @@ import Auth from "components/Auth";
 import Footer from "components/Footer";
 
 const App = props => [
-  props.isLoggedin ? <PrivateRoutes key={2} /> : <PublicRoutes key={2} />,
+  props.isLoggedIn ? <PrivateRoutes key={2} /> : <PublicRoutes key={2} />,
   <Footer key={3} />
 ];
 
 App.propTypes = {
-  isLoggedin: PropTypes.bool.isRequired
+  isLoggedIn: PropTypes.bool.isRequired
 };
 
 const PrivateRoutes = props => (

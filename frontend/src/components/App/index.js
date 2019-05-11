@@ -2,9 +2,9 @@ import { connect } from "react-redux";
 import Container from "./container";
 
 const mapStateToProps = (state, ownProps) => {
-  const { user } = state;
+  const { users } = state;
   return {
-    isLoggedin: user && user.isLoggedin
+    isLoggedIn: users.isLoggedIn
   };
 };
 
