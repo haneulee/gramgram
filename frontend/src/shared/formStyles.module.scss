@@ -58,13 +58,37 @@
     }
   }
   .facebookLink {
-    display: flex;
-    align-items: center;
     color: #385185;
-    justify-content: center;
     margin-bottom: 25px;
-    svg {
+    cursor: pointer;
+    background-color: white;
+    border: 0;
+    width: 100%;
+    font-size: $normal-font-size;
+    text-align: center;
+    i {
+      font-size: 18px;
       margin-right: 5px;
+    }
+    &:focus,
+    &:active {
+      outline: none;
+    }
+  }
+  .facebookLink2 {
+    color: white;
+    background: none;
+    cursor: pointer;
+    border: 0;
+    width: 100%;
+    font-size: $normal-font-size;
+    text-align: center;
+    i {
+      margin-right: 5px;
+    }
+    &:focus,
+    &:active {
+      outline: none;
     }
   }
   .forgotLink {
