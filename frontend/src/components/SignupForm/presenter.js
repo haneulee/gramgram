@@ -9,9 +9,7 @@ export const SignupForm = (props, context) => (
     <h3 className={formStyles.signupHeader}>
       {context.t("Sign up to see photos and videos from your friends.")}
     </h3>
-    <button className={formStyles.button}>
-      {/* <LogoFacebook fontSize="20px" color="white" />
-      {context.t("Log in with Facebook")} */}
+    <span className={formStyles.button}>
       <FacebookLogin
         appId="819114768457582"
         autoLoad={false}
@@ -21,7 +19,7 @@ export const SignupForm = (props, context) => (
         icon={"fa-facebook-official"}
         textButton={context.t("Log in with Facebook")}
       />
-    </button>
+    </span>
     <span className={formStyles.divider}>or</span>
     <form className={formStyles.form} onSubmit={props.handleSubmit}>
       <input
@@ -36,9 +34,9 @@ export const SignupForm = (props, context) => (
         type="text"
         placeholder="Full Name"
         className={formStyles.textInput}
-        value={props.fullnameValue}
+        value={props.nameValue}
         onChange={props.handleInputChange}
-        name="fullname"
+        name="name"
       />
       <input
         type="username"
@@ -69,7 +67,7 @@ SignupForm.propTypes = {
   usernameValue: PropTypes.string.isRequired,
   passwordValue: PropTypes.string.isRequired,
   emailValue: PropTypes.string.isRequired,
-  fullnameValue: PropTypes.string.isRequired,
+  nameValue: PropTypes.string.isRequired,
   handleInputChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   handleFacebookLogin: PropTypes.func.isRequired
