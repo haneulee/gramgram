@@ -5,6 +5,7 @@ import { Route, Switch } from "react-router-dom";
 import Auth from "components/Auth";
 import Navigation from "components/Navigation";
 import Footer from "components/Footer";
+import Feed from "components/Feed";
 
 const App = props => [
   props.isLoggedIn ? <Navigation key={1} /> : null,
@@ -18,14 +19,13 @@ App.propTypes = {
 
 const PrivateRoutes = props => (
   <Switch>
-    <Route exact path="/" render={() => "feed"} />
+    <Route exact path="/" component={Feed} />
     <Route exact path="/explore" render={() => "explore"} />
   </Switch>
 );
 
 const PublicRoutes = props => (
   <Switch>
-    {/* <Route exact path="/" render={() => "login"} /> */}
     <Route exact path="/" component={Auth} />
     <Route exact path="/forgot" render={() => "password"} />
   </Switch>
