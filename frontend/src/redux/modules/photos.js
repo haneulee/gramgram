@@ -4,7 +4,16 @@ import { actionCreators as userActions } from "redux/modules/users";
 
 // actions
 
+const SET_FEED = "SET_FEED";
+
 // action creators
+
+function setFeed(feed) {
+  return {
+    type: SET_FEED,
+    feed
+  };
+}
 
 // API actions
 
@@ -26,12 +35,10 @@ function getFeed() {
         return response.json();
       })
       .then(json => {
-        console.log(json);
         // if (json.token) {
-        //   dispatch(saveToken(json.token));
+        dispatch(setFeed(json));
         // }
-      })
-      .catch(err => console.log(err));
+      });
   };
 }
 
@@ -43,6 +50,8 @@ const initialState = {};
 
 function reducer(state = initialState, action) {
   switch (action.type) {
+    case SET_FEED:
+      return applySetFeed(state, action);
     default:
       return state;
   }
@@ -50,10 +59,20 @@ function reducer(state = initialState, action) {
 
 // reducer functions
 
+function applySetFeed(state, action) {
+  const { feed } = action;
+
+  return {
+    ...state,
+    feed
+  };
+}
+
 // exports
 
 const actionCreators = {
-  getFeed
+  getFeed,
+  setFeed
 };
 
 export { actionCreators };

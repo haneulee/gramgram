@@ -10,7 +10,16 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
+const mapStateToProps = (state, ownProps) => {
+  const {
+    photos: { feed }
+  } = state;
+  return {
+    feed
+  };
+};
+
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Container);
