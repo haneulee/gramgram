@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from gramgram.users import models as user_models
 from taggit.managers import TaggableManager
+from django.contrib.humanize.templatetags.humanize import naturaltime
 
 
 @python_2_unicode_compatible
@@ -26,6 +27,10 @@ class Image(TimeStampedModel):
         related_name="images",
         on_delete=models.CASCADE)
     tags = TaggableManager()
+
+    @property
+    def natural_time(self):
+        return naturaltime(self.created_at)
 
     @property
     def like_count(self):
