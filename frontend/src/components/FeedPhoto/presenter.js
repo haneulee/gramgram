@@ -9,27 +9,28 @@ import CommentBox from "../CommentBox";
 const FeedPhoto = (props, context) => {
   return (
     <div className={styles.feedPhoto}>
-      <header>
+      <header className={styles.header}>
         <img
           src={props.creator.profile_image || require("images/noPhoto.jpg")}
           alt={props.creator.username}
+          className={styles.image}
         />
-        <div>
-          <span id={props.creator.username} />
-          <span id={props.location} />
-        </div>
-        <img src={props.file} alt={props.caption} />
-        <div>
-          <PhotoActions number={props.like_count + 1} />
-          <PhotoComments
-            caption={props.caption}
-            creator={props.creator.username}
-            comments={props.comments}
-          />
-          <TimeStamp time={props.natural_time} />
-          <CommentBox />
+        <div className={styles.headerColumn}>
+          <span className={styles.creator}>{props.creator.username}</span>
+          <span className={styles.location}>{props.location}</span>
         </div>
       </header>
+      <img src={props.file} alt={props.caption} />
+      <div className={styles.meta}>
+        <PhotoActions number={props.like_count} />
+        <PhotoComments
+          caption={props.caption}
+          creator={props.creator.username}
+          comments={props.comments}
+        />
+        <TimeStamp time={props.natural_time} />
+        <CommentBox />
+      </div>
     </div>
   );
 };
