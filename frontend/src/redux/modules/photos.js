@@ -100,6 +100,28 @@ function dislikePhoto(photoId) {
   };
 }
 
+function commentPhoto(photoId, message) {
+  return function(dispatch, getState) {
+    const {
+      users: { token }
+    } = getState();
+    fetch(`/images/${photoId}/comments/`, {
+      method: "POST",
+      headers: {
+        Authorization: `JWT ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message
+      })
+    }).then(response => {
+      if (response.status === 401) {
+        dispatch(userActions.logout());
+      }
+    });
+  };
+}
+
 // initial state
 
 const initialState = {};
@@ -166,7 +188,8 @@ const actionCreators = {
   getFeed,
   setFeed,
   likePhoto,
-  dislikePhoto
+  dislikePhoto,
+  commentPhoto
 };
 
 export { actionCreators };
