@@ -22,7 +22,7 @@ def create_notification(creator,
                         image=None,
                         comment=None):
 
-    notification = models.Notification.objects().create(
+    notification = models.Notification.objects.create(
         creator=creator,
         to=to,
         notification_type=notification_type,
