@@ -67,7 +67,8 @@ FeedPhoto.propTypes = {
   is_liked: PropTypes.bool.isRequired,
   seeingLikes: PropTypes.bool.isRequired,
   openLikes: PropTypes.func.isRequired,
-  closeLikes: PropTypes.func.isRequired
+  closeLikes: PropTypes.func.isRequired,
+  getPhotoLikes: PropTypes.func.isRequired
 };
 
 FeedPhoto.contextTypes = {
