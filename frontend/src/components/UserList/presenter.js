@@ -25,11 +25,16 @@ const RenderUsers = props => {
   return props.list.map(user => <UserRow user={user} key={user.id} />);
 };
 
+RenderUsers.propTypes = {
+  list: PropTypes.array
+};
+
 UserList.propTypes = {
   title: PropTypes.string.isRequired,
   loading: PropTypes.bool.isRequired,
-  userList: PropTypes.array,
-  closeLikes: PropTypes.func.isRequired
+  users: PropTypes.array,
+  closeLikes: PropTypes.func.isRequired,
+  userList: PropTypes.array
 };
 
 export default UserList;
