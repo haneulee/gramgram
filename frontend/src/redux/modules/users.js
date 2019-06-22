@@ -9,6 +9,8 @@ const SET_IMAGE_LIST = "SET_IMAGE_LIST";
 const FOLLOW_USER = "FOLLOW_USER";
 const UNFOLLOW_USER = "UNFOLLOW_USER";
 const SET_EXPLORE = "SET_EXPLORE";
+const SET_USERNAME = "SET_USERNAME";
+const SET_USER_PROFILE = "SET_USER_PROFILE";
 
 // action creators
 
@@ -60,6 +62,20 @@ function setExplore(userList) {
   };
 }
 
+function setUsername(username) {
+  return {
+    type: SET_USERNAME,
+    username
+  };
+}
+
+function setUserProfile(userProfile) {
+  return {
+    type: SET_USER_PROFILE,
+    userProfile
+  };
+}
+
 // API actions
 
 function facebookLogin(access_token) {
@@ -77,6 +93,7 @@ function facebookLogin(access_token) {
       .then(json => {
         if (json.token) {
           dispatch(saveToken(json.token));
+          dispatch(setUsername(json.username));
         }
       })
       .catch(err => console.log(err));
@@ -99,6 +116,7 @@ function usernameLogin(username, password) {
       .then(json => {
         if (json.token) {
           dispatch(saveToken(json.token));
+          dispatch(setUsername(username));
         }
       })
       .catch(err => console.log(err));
@@ -125,6 +143,7 @@ function createAccount(username, email, name, password) {
         if (json.token) {
           dispatch(saveToken(json.token));
         }
+        dispatch(setUsername(username));
       })
       .catch(err => console.log(err));
   };
@@ -267,11 +286,38 @@ function searchImages(token, searchTerm) {
     .then(json => json);
 }
 
+function getUserProfile() {
+  return (dispatch, getState) => {
+    const {
+      users: { token, username }
+    } = getState();
+    if (username) {
+      fetch(`/users/${username}`, {
+        method: "GET",
+        headers: {
+          Authorization: `JWT ${token}`
+        }
+      })
+        .then(response => {
+          if (response.status === 401) {
+            dispatch(logout());
+          }
+          return response.json();
+        })
+        .then(json => {
+          console.log(json);
+          dispatch(setUserProfile(json));
+        });
+    }
+  };
+}
+
 // initial state
 
 const initialState = {
   isLoggedIn: localStorage.getItem("jwt") ? true : false,
-  token: localStorage.getItem("jwt")
+  token: localStorage.getItem("jwt"),
+  username: localStorage.getItem("username")
 };
 
 // reducer
@@ -292,6 +338,10 @@ function reducer(state = initialState, action) {
       return applySetExplore(state, action);
     case SET_IMAGE_LIST:
       return applySetImageList(state, action);
+    case SET_USERNAME:
+      return applySetUsername(state, action);
+    case SET_USER_PROFILE:
+      return applySetUserProfile(state, action);
     default:
       return state;
   }
@@ -368,6 +418,23 @@ function applySetExplore(state, action) {
   };
 }
 
+function applySetUsername(state, action) {
+  const { username } = action;
+  localStorage.setItem("username", username);
+  return {
+    ...state,
+    username
+  };
+}
+
+function applySetUserProfile(state, action) {
+  const { userProfile } = action;
+  return {
+    ...state,
+    userProfile
+  };
+}
+
 // exports
 
 const actionCreators = {
@@ -379,7 +446,9 @@ const actionCreators = {
   followUser,
   unfollowUser,
   getExplore,
-  searchByTerm
+  searchByTerm,
+  setUsername,
+  getUserProfile
 };
 
 export { actionCreators };

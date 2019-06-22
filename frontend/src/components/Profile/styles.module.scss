@@ -1,0 +1,96 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 16px;
+  width: 100%;
+  box-sizing: border-box;
+  border-bottom: 1px solid #efefef;
+  flex-grow: 1;
+  margin: 0 auto 30px;
+  max-width: 935px;
+  box-sizing: content-box;
+  padding: 60px 20px 0;
+  width: calc(100% - 40px);
+  @include breakpoint("phone-tablet") {
+    border-bottom: 0;
+  }
+
+  .profile {
+    margin-bottom: 44px;
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    .avatar {
+      background-color: #fafafa;
+      border-radius: 50%;
+      height: 150px;
+      width: 150px;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      overflow: hidden;
+      position: relative;
+      margin-right: 30px;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .profileBox {
+      font-size: 16px;
+      line-height: 24px;
+      word-wrap: break-word;
+      div {
+        margin-right: 30px;
+      }
+      .numbers {
+        display: flex;
+        margin-bottom: 20px;
+        span {
+          font-weight: 600;
+        }
+      }
+      .username {
+        margin-bottom: 20px;
+        padding-bottom: 5px;
+        font-weight: 300;
+        font-size: 28px;
+        line-height: 32px;
+        .setting {
+          margin-left: 20px;
+          cursor: pointer;
+        }
+      }
+      .name {
+        font-weight: 600;
+      }
+      .website {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .tab {
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid #efefef;
+    width: 100%;
+    div {
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      display: flex;
+      margin-right: 60px;
+      color: #999;
+      text-transform: uppercase;
+      height: 52px;
+      cursor: pointer;
+      justify-content: center;
+    }
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
+}
