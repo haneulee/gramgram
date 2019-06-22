@@ -11,6 +11,7 @@ const UNFOLLOW_USER = "UNFOLLOW_USER";
 const SET_EXPLORE = "SET_EXPLORE";
 const SET_USERNAME = "SET_USERNAME";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
+const SET_NOTIFICATIONS = "SET_NOTIFICATIONS";
 
 // action creators
 
@@ -73,6 +74,13 @@ function setUserProfile(userProfile) {
   return {
     type: SET_USER_PROFILE,
     userProfile
+  };
+}
+
+function setNotifications(notificationList) {
+  return {
+    type: SET_NOTIFICATIONS,
+    notificationList
   };
 }
 
@@ -305,10 +313,32 @@ function getUserProfile() {
           return response.json();
         })
         .then(json => {
-          console.log(json);
           dispatch(setUserProfile(json));
         });
     }
+  };
+}
+
+function getNotifications() {
+  return (dispatch, getState) => {
+    const {
+      users: { token }
+    } = getState();
+    fetch(`/notifications/`, {
+      method: "GET",
+      headers: {
+        Authorization: `JWT ${token}`
+      }
+    })
+      .then(response => {
+        if (response.status === 401) {
+          dispatch(logout());
+        }
+        return response.json();
+      })
+      .then(json => {
+        dispatch(setNotifications(json));
+      });
   };
 }
 
@@ -342,6 +372,8 @@ function reducer(state = initialState, action) {
       return applySetUsername(state, action);
     case SET_USER_PROFILE:
       return applySetUserProfile(state, action);
+    case SET_NOTIFICATIONS:
+      return applySetNotifications(state, action);
     default:
       return state;
   }
@@ -435,6 +467,14 @@ function applySetUserProfile(state, action) {
   };
 }
 
+function applySetNotifications(state, action) {
+  const { notificationList } = action;
+  return {
+    ...state,
+    notificationList
+  };
+}
+
 // exports
 
 const actionCreators = {
@@ -448,7 +488,8 @@ const actionCreators = {
   getExplore,
   searchByTerm,
   setUsername,
-  getUserProfile
+  getUserProfile,
+  getNotifications
 };
 
 export { actionCreators };

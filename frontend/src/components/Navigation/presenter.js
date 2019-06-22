@@ -3,6 +3,7 @@ import { FiUser, FiHeart, FiCompass } from "react-icons/fi";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.scss";
+import Notification from "components/Notification";
 
 const Navigation = (props, context) => (
   <div className={styles.navigation}>
@@ -34,7 +35,12 @@ const Navigation = (props, context) => (
           </Link>
         </div>
         <div className={styles.navIcon}>
-          <FiHeart fontSize="28px" color="black" />
+          <FiHeart
+            fontSize="28px"
+            color="black"
+            onClick={props.handleNotification}
+          />
+          {props.notification ? <Notification /> : null}
         </div>
         <div className={styles.navIcon}>
           <Link to="/profile">
@@ -53,7 +59,9 @@ Navigation.contextTypes = {
 Navigation.propTypes = {
   onInputChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired
+  value: PropTypes.string.isRequired,
+  notification: PropTypes.bool.isRequired,
+  handleNotification: PropTypes.func.isRequired
 };
 
 export default Navigation;

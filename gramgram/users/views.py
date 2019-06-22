@@ -11,7 +11,8 @@ class ExploreUsers(APIView):
     def get(self, request, format=None):
 
         last_five = models.User.objects.all().order_by('-date_joined')[:5]
-        serializer = serializers.ListUserSerializer(last_five, many=True, context={"request": request})
+        serializer = serializers.ListUserSerializer(
+            last_five, many=True, context={"request": request})
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
@@ -30,7 +31,7 @@ class FollowUser(APIView):
 
         user.save()
 
-        # notification_views.create_notification(user, user_to_follow, "follow")
+        notification_views.create_notification(user, user_to_follow, "follow")
 
         return Response(status=status.HTTP_200_OK)
 
@@ -86,17 +87,18 @@ class UserProfile(APIView):
 
         else:
 
-            serializer = serializers.UserProfileSerializer(
-                found_user, data=request.data, partial=True)
+            serializer = serializers.UserProfileSerializer(found_user,
+                                                           data=request.data,
+                                                           partial=True)
 
             if serializer.is_valid():
                 serializer.save()
-                return Response(
-                    data=serializer.data, status=status.HTTP_200_OK)
+                return Response(data=serializer.data,
+                                status=status.HTTP_200_OK)
 
             else:
-                return Response(
-                    data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+                return Response(data=serializer.errors,
+                                status=status.HTTP_400_BAD_REQUEST)
 
 
 class UserFollowers(APIView):
@@ -109,7 +111,8 @@ class UserFollowers(APIView):
 
         user_followers = found_user.followers.all()
 
-        serializer = serializers.ListUserSerializer(user_followers, many=True, context={"request": request})
+        serializer = serializers.ListUserSerializer(
+            user_followers, many=True, context={"request": request})
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
@@ -124,7 +127,8 @@ class UserFollowing(APIView):
 
         user_following = found_user.following.all()
 
-        serializer = serializers.ListUserSerializer(user_following, many=True, context={"request": request})
+        serializer = serializers.ListUserSerializer(
+            user_following, many=True, context={"request": request})
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
@@ -138,7 +142,8 @@ class Search(APIView):
 
             users = models.User.objects.filter(username__istartswith=username)
 
-            serializer = serializers.ListUserSerializer(users, many=True, context={"request": request})
+            serializer = serializers.ListUserSerializer(
+                users, many=True, context={"request": request})
 
             return Response(data=serializer.data, status=status.HTTP_200_OK)
 

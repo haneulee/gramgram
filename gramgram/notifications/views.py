@@ -10,8 +10,8 @@ class Notifications(APIView):
         user = request.user
         notifications = models.Notification.objects.filter(to=user)
 
-        serializer = serializers.NotificationSerializer(
-            notifications, many=True)
+        serializer = serializers.NotificationSerializer(notifications,
+                                                        many=True)
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
@@ -28,6 +28,8 @@ def create_notification(creator,
         notification_type=notification_type,
         image=image,
         comment=comment)
+
+    notification.save()
 
 
 # Create your views here.
