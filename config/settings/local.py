@@ -11,7 +11,7 @@ SECRET_KEY = env(
     default="QFIPX2TOFX5FmMBuoW1mWRPqkiUy1fPGTivp2a343DOJW6cxwyJmfjTUHUUCbDW2",
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
+ALLOWED_HOSTS = ["*"]
 
 # CACHES
 # ------------------------------------------------------------------------------
@@ -31,9 +31,8 @@ TEMPLATES[0]["OPTIONS"]["debug"] = DEBUG  # noqa F405
 # EMAIL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
-EMAIL_BACKEND = env(
-    "DJANGO_EMAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend"
-)
+EMAIL_BACKEND = env("DJANGO_EMAIL_BACKEND",
+                    default="django.core.mail.backends.console.EmailBackend")
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-host
 EMAIL_HOST = "localhost"
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-port
@@ -52,7 +51,6 @@ DEBUG_TOOLBAR_CONFIG = {
 }
 # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html#internal-ips
 INTERNAL_IPS = ["127.0.0.1", "10.0.2.2"]
-
 
 # django-extensions
 # ------------------------------------------------------------------------------

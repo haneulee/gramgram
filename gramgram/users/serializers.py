@@ -14,7 +14,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.User
-        fields = ('profile_image', 'username', 'name', 'bio', 'website',
+        fields = ('pk', 'profile_image', 'username', 'name', 'bio', 'website',
                   'post_count', 'followers_count', 'following_count', 'images')
 
 
@@ -33,6 +33,7 @@ class ListUserSerializer(serializers.ModelSerializer):
                 return True
         return False
 
+
 class SignUpSerializer(RegisterSerializer):
 
     name = serializers.CharField(required=True, write_only=True)
@@ -44,7 +45,7 @@ class SignUpSerializer(RegisterSerializer):
             'password1': self.validated_data.get('password1', ''),
             'email': self.validated_data.get('email', '')
         }
-    
+
     def save(self, request):
         adapter = get_adapter()
         user = adapter.new_user(request)
