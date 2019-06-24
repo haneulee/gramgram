@@ -152,8 +152,10 @@ STATIC_ROOT = str(ROOT_DIR("staticfiles"))
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-url
 STATIC_URL = "/static/"
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
-STATICFILES_DIRS = [str(APPS_DIR.path("static")),
-    str(ROOT_DIR.path("frontend", "build", "static"))]
+STATICFILES_DIRS = [
+    str(APPS_DIR.path("static")),
+    str(ROOT_DIR.path("frontend", "build", "static"))
+]
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
@@ -220,9 +222,8 @@ X_FRAME_OPTIONS = "DENY"
 # EMAIL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
-EMAIL_BACKEND = env(
-    "DJANGO_EMAIL_BACKEND",
-    default="django.core.mail.backends.smtp.EmailBackend")
+EMAIL_BACKEND = env("DJANGO_EMAIL_BACKEND",
+                    default="django.core.mail.backends.smtp.EmailBackend")
 
 # ADMIN
 # ------------------------------------------------------------------------------
@@ -269,41 +270,30 @@ SOCIALACCOUNT_EMAIL_REQUIRED = False
 SOCIALACCOUNT_QUERY_EMAIL = True
 CORS_ORIGIN_ALLOW_ALL = True
 
-JWT_AUTH = {
-    'JWT_VERIFY_EXPIRATION': False
-}
+JWT_AUTH = {'JWT_VERIFY_EXPIRATION': False}
 
-SOCIALACCOUNT_PROVIDERS = {  
-    'facebook': {  
-        'SCOPE': [  
-            'email',  
-            'public_profile',  
-            'user_friends'  
-        ],  
-        'FIELDS': [  
-            'id',  
-            'email',  
-            'name',  
-            'first_name',  
-            'last_name',  
-            'verified',
-            'locale',  
-            'timezone',  
-            'link',  
-            'gender',  
-            'updated_time',
-            'picture' 
-        ],  
-        'AUTH_PARAMS': {  
-            #'auth_type': 'reauthenticate'  
-        },  
-        'METHOD': 'oauth2',  
-        #'LOCALE_FUNC': 'path.to.callable',  
-        'VERIFIED_EMAIL': True,  
-        'VERSION': 'v2.4'  
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook': {
+        'SCOPE': ['email', 'public_profile', 'user_friends'],
+        'FIELDS': [
+            'id', 'email', 'name', 'first_name', 'last_name', 'verified',
+            'locale', 'timezone', 'link', 'gender', 'updated_time', 'picture'
+        ],
+        'AUTH_PARAMS': {
+            #'auth_type': 'reauthenticate'
+        },
+        'METHOD':
+        'oauth2',
+        #'LOCALE_FUNC': 'path.to.callable',
+        'VERIFIED_EMAIL':
+        True,
+        'VERSION':
+        'v2.4'
     }
-}  
+}
 
 REST_AUTH_REGISTER_SERIALIZERS = {
     'REGISTER_SERIALIZER': 'gramgram.users.serializers.SignUpSerializer'
 }
+
+ALLOWED_HOSTS = ['*']
