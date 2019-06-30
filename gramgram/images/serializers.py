@@ -50,18 +50,19 @@ class ImageSerializer(TaggitSerializer, serializers.ModelSerializer):
     class Meta:
         model = models.Image
         fields = ('id', 'file', 'location', 'caption', 'comments',
-                  'like_count', "creator", "natural_time", "tags", "is_liked")
+                  'like_count', 'creator', 'tags', 'natural_time', 'is_liked',
+                  'is_vertical')
 
     def get_is_liked(self, obj):
         if 'request' in self.context:
             request = self.context['request']
             try:
-                models.Like.objects.get(creator__id=request.user.id, image__id=obj.id)
+                models.Like.objects.get(creator__id=request.user.id,
+                                        image__id=obj.id)
                 return True
             except models.Like.DoesNotExist:
                 return False
         return False
-
 
 
 class InputImageSerializer(serializers.ModelSerializer):
