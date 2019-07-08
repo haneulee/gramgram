@@ -50,7 +50,8 @@ class ImageSerializer(TaggitSerializer, serializers.ModelSerializer):
     class Meta:
         model = models.Image
         fields = ('id', 'file', 'location', 'caption', 'comments',
-                  'like_count', 'creator', 'tags', 'natural_time', 'is_liked')
+                  'like_count', 'creator', 'tags', 'natural_time', 'is_liked',
+                  'is_vertical')
 
     def get_is_liked(self, obj):
         if 'request' in self.context:
