@@ -3,6 +3,8 @@ from django.utils.encoding import python_2_unicode_compatible
 from gramgram.users import models as user_models
 from taggit.managers import TaggableManager
 from django.contrib.humanize.templatetags.humanize import naturaltime
+from imagekit.models import ProcessedImageField
+from imagekit.processors import Transpose
 
 
 @python_2_unicode_compatible
@@ -18,7 +20,9 @@ class TimeStampedModel(models.Model):
 @python_2_unicode_compatible
 class Image(TimeStampedModel):
     """ Image Model """
-    file = models.ImageField()
+    file = ProcessedImageField(processors=[Transpose()],
+                               format='JPEG',
+                               options={'quality': 50})
     location = models.CharField(max_length=140)
     caption = models.TextField()
     creator = models.ForeignKey(user_models.User,

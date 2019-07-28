@@ -75,6 +75,8 @@ THIRD_PARTY_APPS = [
     "taggit_serializer",
     "rest_auth",
     "rest_auth.registration",
+    'corsheaders',  # To accept requests from React
+    'imagekit',  # to optimize image
 ]
 LOCAL_APPS = [
     "gramgram.users.apps.UsersAppConfig",
@@ -297,5 +299,6 @@ REST_AUTH_REGISTER_SERIALIZERS = {
 }
 
 REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER': 'gramgram.users.serializers.UserProfileSerializer'
+    'USER_DETAILS_SERIALIZER':
+    'gramgram.users.serializers.UserProfileSerializer'
 }
