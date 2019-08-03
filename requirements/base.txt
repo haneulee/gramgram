@@ -18,13 +18,9 @@ djangorestframework-jwt==1.11.0
 djangorestframework==3.9.2  # https://github.com/encode/django-rest-framework
 coreapi==2.3.3  # https://github.com/core-api/python-client
 
-
 django-cors-headers==3.0.2
 django-rest-auth[with_social]==0.9.5
-
 django-taggit-serializer==0.1.7
 django-taggit==1.1.0
-
 django-imagekit==4.0.2
-
 django-cors-headers==3.0.2
